@@ -1,18 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Home from "./pages/home/home";
+// import Checkout from "./pages/checkout/checkout";
+import Product from "./pages/product/product";
+// import Cart from "./pages/cart/cart";
+// import Login from "./pages/login/login";
+// import Register from "./pages/register/register";
+
+import Layout from "./components/Layout/Layout";
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <BrowserRouter>
+          <Layout>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <Switch>
+                    <Route path='/store/cart' />
+                    <Route path='/store/checkout' />
+                    <Route path='/store/login' />
+                    <Route path='/store/register' />
+                    <Route path='/store/product/:id' component={Product}/>
+                    <Route path='/store/' component={Home} />
+                  </Switch>
+                </div>
+              </div>
+            </div>
+          </Layout>
+        </BrowserRouter>
       </div>
     );
   }
