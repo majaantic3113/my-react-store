@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import Home from "./pages/home/home";
-// import Checkout from "./pages/checkout/checkout";
-import Product from "./pages/product/product";
-// import Cart from "./pages/cart/cart";
-// import Login from "./pages/login/login";
-// import Register from "./pages/register/register";
+import Home from "./pages/Home/Home";
+// import Checkout from "./pages/Checkout/Checkout";
+import Product from "./pages/Product/Product";
+// import Cart from "./pages/Cart/Cart";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 import Layout from "./components/Layout/Layout";
 
@@ -16,7 +16,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
           <Layout>
             <div className="container">
               <div className="row">
@@ -24,8 +23,8 @@ class App extends Component {
                   <Switch>
                     <Route path='/store/cart' />
                     <Route path='/store/checkout' />
-                    <Route path='/store/login' />
-                    <Route path='/store/register' />
+                    <Route path='/store/login' component={Login} />
+                    <Route path='/store/register' component={Register}/>
                     <Route path='/store/product/:id' component={Product}/>
                     <Route path='/store/' component={Home} />
                   </Switch>
@@ -33,7 +32,6 @@ class App extends Component {
               </div>
             </div>
           </Layout>
-        </BrowserRouter>
       </div>
     );
   }

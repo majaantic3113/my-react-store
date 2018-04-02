@@ -4,6 +4,8 @@ import axios from "../../axios-store";
 
 import Spinner from "../../components/UI/Spinner/Spinner";
 
+const ACCESS_DENIED = 'ACCESS_DENIED';
+
 class Product extends Component {
     state = {
         product: null,
@@ -15,17 +17,23 @@ class Product extends Component {
                 this.setState({product: result.data[0]});
             }
         ).catch((error) => {
-            console.log(error);
+            this.setState({product: ACCESS_DENIED});;
         });
     }
 
     render() {
-        console.log(this.props);
 
-        let product = <Spinner />;
+        const { product } = this.state;
 
-        if (this.state.product) {
-            product = <div className="container-fluid">
+        if(product === ACCESS_DENIED) {
+            this.props.history.push('/store/login');
+            return(null);
+        } else {
+            
+        let spinner = <Spinner />;
+
+        if (product) {
+            spinner = <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-3">
                         <div className="list-group">
@@ -41,18 +49,18 @@ class Product extends Component {
                             />
                             <div className="card-body">
                                 <h3 className="card-title">
-                                    {this.state.product.name}
-                        </h3>
+                                    {product.name}
+                                </h3>
                                 <h4>$24.99</h4>
                                 <p className="card-text">
-                                    {this.state.product.description}
-                            </p>
+                                    {product.description}
+                                </p>
                                 <Link
                                     className="btn btn-primary add-to-cart"
                                     role="button" to="/store/cart/addToCart"
                                 >
                                     Add to Cart
-                            </Link>
+                                </Link>
                                 <Link
                                     className="btn btn-danger remove-from-cart"
                                     role="button" to="/store/cart/removeFromCart"
@@ -67,8 +75,10 @@ class Product extends Component {
         }
 
         return (
-           product
+           spinner
         );
+    }
+
     }
 }
 

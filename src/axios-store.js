@@ -1,11 +1,13 @@
 import axios from "axios";
 
-// const instance = axios.create({
-//     baseURL: 'http://localhost:8080/store',
-// });
+const instance = axios.create({
+    baseURL: 'http://localhost:8080/store',
+});
 
-axios.defaults.baseURL = 'http://localhost:8080/store';
-
-axios.interceptors.request.use();
+instance.interceptors.request.use(request => {
+    const token = localStorage.getItem('token');
+    request.headers['x-auth'] = token ? token : '';
+    return request;
+  })
 
 export default instance;
