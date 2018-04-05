@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 // import { Field } from "redux-form";
+import { connect } from "react-redux";
 
 import axios from "../../axios-store";
+import * as userActionCreators from "../../store/actions/userActions";
 
 class Login extends Component {
 
@@ -31,14 +33,15 @@ class Login extends Component {
         let requestBody = {username, password};
 
         axios.post('/auth/authenticateuser', requestBody).then(response => {
-            console.log(response);
             localStorage.setItem('token', response.data.data.token);
-            console.log(localStorage.getItem('token'));
-            this.props.history.push('/store');
+            this.props.history.push({
+                pathname: '/store', 
+            });
         }).catch(response => {
-            console.log(response);
             this.setState({ errorMessage: response.data });
         });
+
+        return this.props.onSetUsername(username);
     }
 
     render() {
@@ -56,7 +59,7 @@ class Login extends Component {
                             className="form-horizontal"
                         >
                             <div className="form-group">
-                                <label className="control-label">Email</label>
+                                <label className="control-label">Username</label>
                                 <div>
                                     <div className="input-group">
                                         <span className="input-group-addon">
@@ -95,4 +98,8 @@ class Login extends Component {
     }
 }
 
-export default Login
+const mapDispatchToProps = dispatch => ({
+    onSetUsername: (username) => dispatch(userActionCreators.setUsername(username)), 
+})
+
+export default connect(null ,mapDispatchToProps)(Login);

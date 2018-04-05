@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import renderField from "../../components/UI/renderField/renderField";
-import { Field } from "redux-form";
+import { Field, reduxForm } from "redux-form";
 
 class Register extends Component {
     render () {
@@ -17,18 +17,17 @@ class Register extends Component {
           <form
             className="form-horizontal"
           >
-            <Field
-              name="name"
+            <input
               type="text"
-              component={renderField}
-              label="Name"
+            //   component={renderField}
+            //   label="Name"
               faClass="fa fa-user"
               placeholder="Enter your username..."
             />
 
             ...
 
-            <Field
+            <input
               name="confirmPassword"
               type="password"
               component={renderField}
@@ -54,4 +53,4 @@ class Register extends Component {
     }
 }
 
-export default Register
+export default reduxForm(Register);
