@@ -12,10 +12,11 @@ class Product extends Component {
         product: null,
         quantity: null,
     };
-    
+
     componentDidMount() {
-        axios.get('product/?id=' + this.props.match.params.id).then(
+        axios.get('products/?id=' + this.props.match.params.id).then(
             (result) => {
+                console.log('product result', result);
                 this.setState({ product: result.data[0] });
             }
         );
@@ -35,13 +36,13 @@ class Product extends Component {
         }
 
         localStorage.setItem('cartProducts', JSON.stringify(products));
-        this.props.history.push('/store');
+        this.props.history.push('/');
     }
     // not currently used
     removeFromCart = () => {
         const { product } = this.state;
         const products = JSON.parse(localStorage.getItem('cartProducts')) || [];
-        
+
         const index = products.findIndex(p => p._id === product._id);
 
         if (index === -1) {
@@ -68,7 +69,7 @@ class Product extends Component {
 
         let productComponent = <Spinner />;
 
-        const cartProduct = this.props.cart.find(p => p._id == this.props.match.params.id);
+        const cartProduct = this.props.cart.find(p => p._id === this.props.match.params.id);
         let quantity = cartProduct ? cartProduct.quantity : 0;
 
         if (product) {
@@ -76,7 +77,7 @@ class Product extends Component {
                 <div className="row">
                     <div className="col-lg-3">
                         <div className="list-group">
-                            <Link to="/store">Back To Home</Link>
+                            <Link to="/">Back To Home</Link>
                         </div>
                     </div>
                     <div className="col-lg-9">
@@ -90,7 +91,7 @@ class Product extends Component {
                                 <h3 className="card-title">
                                     {product.name}
                                 </h3>
-                                <h4>$24.99</h4>
+                                <h4>${product.price}</h4>
                                 <p className="card-text">
                                     Description: {product.description}
                                 </p>
@@ -111,7 +112,7 @@ class Product extends Component {
         }
 
         return (
-                productComponent
+            productComponent
         );
 
     }
@@ -119,7 +120,7 @@ class Product extends Component {
 
 const mapStateToProps = state => {
     return {
-         cart: state.cart.cartProducts,
+        cart: state.cart.cartProducts,
     };
 };
 

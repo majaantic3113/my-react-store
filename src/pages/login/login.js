@@ -30,18 +30,18 @@ class Login extends Component {
 
         const { username, password } = this.state;
 
-        let requestBody = {username, password};
+        let requestBody = { username, password };
 
         axios.post('/auth/authenticateuser', requestBody).then(response => {
             localStorage.setItem('token', response.data.data.token);
             this.props.history.push({
-                pathname: '/store', 
+                pathname: '/',
             });
-        }).catch(response => {
-            this.setState({ errorMessage: response.data });
+            this.props.onSetUsername(username);
+            this.props.setIfUserIsLoggedIn(true);
+        }).catch(() => {
+            this.setState({ errorMessage: 'This task can not be deleted!' });
         });
-
-        return this.props.onSetUsername(username);
     }
 
     render() {
@@ -99,7 +99,8 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    onSetUsername: (username) => dispatch(userActionCreators.setUsername(username)), 
+    onSetUsername: (username) => dispatch(userActionCreators.setUsername(username)),
+    setIfUserIsLoggedIn: (loggedIn) => dispatch(userActionCreators.setIsLoggedIn(loggedIn))
 })
 
-export default connect(null ,mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

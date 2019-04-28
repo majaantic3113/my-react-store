@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
-import axios from "../../axios-store";
 import * as actionCreators from "../../store/actions/actions";
 import { connect } from "react-redux";
 
@@ -14,7 +13,7 @@ class Cart extends Component {
 
     componentDidMount() {
         const products = JSON.parse(localStorage.getItem('cartProducts')) || [];
-        this.setState({products});
+        this.setState({ products });
     }
 
     removeFromCartHandler = (product) => {
@@ -23,7 +22,7 @@ class Cart extends Component {
         products.splice(products.indexOf(product), 1);
 
         localStorage.setItem('cartProducts', JSON.stringify(products));
-        this.setState({products});
+        this.setState({ products });
     }
 
     render() {
@@ -33,18 +32,19 @@ class Cart extends Component {
             let cartBody = this.props.cart.map(
                 product => (
                     <tr key={product._id}>
-                    <td>
-                            {product._id}
-                    </td>
-                    <td>
+
+                        <td>
                             {product.name}
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                             {product.description}
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                             {product.quantity}
-                    </td>
+                        </td>
+                        <td>
+                            {(+product.price * +product.quantity)}
+                        </td>
                         <td>
                             <button className="btn btn-danger remove-from-cart" onClick={() => this.props.onRemoveProductFromCartCompletely(product)}>
                                 Remove from Cart
@@ -57,15 +57,15 @@ class Cart extends Component {
             cart = <Table striped bordered condensed hover>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Product</th>
                         <th>Description</th>
                         <th>Number</th>
+                        <th>Price</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                   {cartBody}
+                    {cartBody}
                 </tbody>
             </Table>
 
@@ -77,7 +77,7 @@ class Cart extends Component {
                     <h1>Cart</h1>
                     <div className="row is-flex">
                         {cart}
-                        <Link className="btn btn-success" role="button" to="/store/checkout">
+                        <Link className="btn btn-success" role="button" to="/checkout">
                             Checkout
                         </Link>
                     </div>

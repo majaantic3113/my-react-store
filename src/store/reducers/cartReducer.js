@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
             index = updatedCartProducts.findIndex(product => product._id === action.product._id);
 
             if (index === -1) {
-                updatedCartProducts.push(action.product);
+                updatedCartProducts.push({ ...action.product, quantity: 1 });
             } else {
                 updatedCartProducts[index].quantity++;
             }
@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.REMOVE_PRODUCT_FROM_CART_COMPLETELY:
             index = updatedCartProducts.findIndex(product => product._id === action.product._id);
 
-            if(index === -1) {
+            if (index === -1) {
                 return updatedState;
             } else {
                 updatedCartProducts.splice(index, 1);
