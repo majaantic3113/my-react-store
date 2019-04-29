@@ -15,8 +15,6 @@ class Home extends Component {
     };
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        console.log(nextProps);
-
         // Store filter in state so we can compare when props change.
         // Clear out any previously-loaded user data (so we don't render stale stuff).
         if (nextProps.location.search !== prevState.filter) {

@@ -14,16 +14,14 @@ class Header extends Component {
     }
 
     render() {
-        console.log(this.props)
-        const guest =
-            <React.Fragment>
-                <Link to="/login">
-                    Login
+        const guest = <React.Fragment>
+            <Link to="/login">
+                Login
                 </Link>
-                <Link to="/register" style={{ 'marginLeft': '5px' }} >
-                    Register
+            <Link to="/register" style={{ 'marginLeft': '5px' }} >
+                Register
                 </Link>
-            </React.Fragment>;
+        </React.Fragment>;
 
         const user = <Link to="/purchases" role="button">Purchases</Link>;
 

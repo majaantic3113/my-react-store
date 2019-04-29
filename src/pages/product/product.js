@@ -16,7 +16,6 @@ class Product extends Component {
     componentDidMount() {
         axios.get('products/?id=' + this.props.match.params.id).then(
             (result) => {
-                console.log('product result', result);
                 this.setState({ product: result.data[0] });
             }
         );
