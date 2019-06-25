@@ -4,7 +4,7 @@ import logoImg from '../../../assets/images/logo.png';
 
 const logo = () => {
     return (
-        <img src={logoImg} alt="Levi9"/>
+        <img src={logoImg} alt="Logo" />
     )
 }
 

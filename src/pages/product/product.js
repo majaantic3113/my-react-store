@@ -73,7 +73,7 @@ class Product extends Component {
 
         if (product) {
             productComponent = <div className="container-fluid">
-                <div className="row">
+                <div className="row" style={{ marginBottom: '20px' }}>
                     <div className="col-lg-3">
                         <div className="list-group">
                             <Link to="/">Back To Home</Link>
@@ -83,7 +83,7 @@ class Product extends Component {
                         <div className="card mt-4">
                             <img
                                 className="card-img-top img-fluid"
-                                src="http://placehold.it/900x400"
+                                src={product.image}
                                 alt=""
                             />
                             <div className="card-body">
@@ -97,7 +97,7 @@ class Product extends Component {
                                 <p className="card-title">
                                     Quantity: <strong>{quantity}</strong>
                                 </p>
-                                <button className="btn btn-primary add-to-cart" onClick={this.addProductToCart}>
+                                <button style={{ marginRight: '10px' }} className="btn btn-primary add-to-cart" onClick={this.addProductToCart}>
                                     Add to Cart
                                 </button>
                                 <button className="btn btn-danger remove-from-cart" onClick={() => this.props.onRemoveProductFromCart(this.state.product)}>

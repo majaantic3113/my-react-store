@@ -66,12 +66,12 @@ class Login extends Component {
                                             <i className="fa fa-at" aria-hidden="true" />
                                         </span>
                                         {/* <Field type="text" name="username" component="input" /> */}
-                                        <input type="text" placeholder="username" value={this.state.username} onChange={this.onUsernameChangeHandler} />
+                                        <input type="text" className="form-control" placeholder="username" value={this.state.username} onChange={this.onUsernameChangeHandler} />
                                     </div>
                                 </div>
-                                <span className="help-block">
+                                {/* <span className="help-block">
                                     Please provide valid email address
-                                </span>
+                                </span> */}
                             </div>
 
                             <div className="form-group">
@@ -82,7 +82,7 @@ class Login extends Component {
                                             <i className="fa fa-unlock-alt" aria-hidden="true" />
                                         </span>
                                         {/* <Field type="password" name="password" component="input" /> */}
-                                        <input type="password" placeholder="password" value={this.state.password} onChange={this.onPasswordChangeHandler} />
+                                        <input type="password" className="form-control" placeholder="password" value={this.state.password} onChange={this.onPasswordChangeHandler} />
                                     </div>
                                     <span className="help-block">Password is required</span>
                                 </div>

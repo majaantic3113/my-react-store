@@ -76,7 +76,7 @@ class Home extends Component {
                     return (
                         <li key={product._id} className="col-sm-6 col-md-4 product-wrapper">
                             <div className="thumbnail">
-                                <img src="http://via.placeholder.com/350x300" alt="" />
+                                <img style={{ width: '300px', height: '400px' }} src={product.image} alt="sock image" />
                                 <div className="caption">
                                     <h3>
                                         {product.name}
@@ -124,7 +124,7 @@ class Home extends Component {
 
         return (
             <div>
-                <div className="container-fluid">
+                <div className="container-fluid" style={{ height: '50px' }}>
                     <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-right">
                         <div className="collapse navbar-collapse" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto">
@@ -135,7 +135,7 @@ class Home extends Component {
                 </div>
                 <div className="row is-flex">
                     <PageHeader>
-                        Title
+                        Happy Socks
                     </PageHeader>
 
                     <div className="row is-flex">

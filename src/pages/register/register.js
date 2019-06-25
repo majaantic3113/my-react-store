@@ -59,15 +59,15 @@ class Register extends Component {
               className="form-horizontal"
             >
               <div>
-                <input type="text" placeholder="username"
+                <input style={{ marginBottom: '30px' }} type="text" className="form-control" placeholder="username"
                   value={this.state.username} onChange={this.onUsernameChangeHandler} />
               </div>
               <div>
-                <input type="email" placeholder="email"
+                <input style={{ marginBottom: '30px' }} type="email" className="form-control" placeholder="email"
                   value={this.state.email} onChange={this.onEmailChangeHandler} />
               </div>
               <div>
-                <input type="password" placeholder="password"
+                <input style={{ marginBottom: '30px' }} type="password" className="form-control" placeholder="password"
                   value={this.state.password} onChange={this.onPasswordChangeHandler} />
               </div>
               <div className="form-group">
